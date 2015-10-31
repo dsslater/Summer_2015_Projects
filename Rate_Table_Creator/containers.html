@@ -1,0 +1,341 @@
+<!doctype html>
+<html> 
+	<head> 
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+		<title>NAME OF COMPANY RTC</title> 
+		<link rel="stylesheet" type="text/css" href="containerStyle.css">
+		<link rel="stylesheet" type="text/css" href="jquery.powertip.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="jquery.powertip.js"></script>
+		<script src="js-functions.js"></script>
+	</head>
+	<body onload="addDate(); animations(); keys();">
+		<div id="container">
+			<!-- Greeting Box-->
+			<div id="box1" class="box">
+				<img id="pic" style="height:70%" class="center" src="LOGO.png"/><br>
+				<button id="firstNext" class="class_one" style="height:10%;">Begin</button>
+			</div>
+			<!-- Vendor Submission Box -->
+			<div id="box2" class="box">
+				<div style="height:100%;">
+					<div id="vendorDiv" class=center >
+						<form id='vendorForm' action="" enctype="multipart/form-data"> 
+								<span id="csv_chunk">Choose a vendor's Rate Table csv file: <br>
+								<input class="class_two" style="background-color:white;" name="csv" type="file" id="csv" /></span><br>
+								<span id="vendorName_chunk"> What is the name of this vendor.<br>
+								<input class="class_two" name="vendorName" type="text" id="vendorName" /></span><br>
+								<span id="customer_chunk"> This vendor is also a customer:
+								<input class="class_three" type="checkbox" id="customer" name="customer" /></span><br>
+								<span id="submit1_chunk"> This will upload one vendor csv: 
+								<button class="class_three" type="button" name="submit1" id="submit1">Submit</button></span>
+						</form>
+					</div>
+					<div>
+						<br><br>
+						<!-- Number of uploaded files counter -->
+						<span id="counter" style="float:left;margin-left:10%;" >
+							<i> 
+								You have uploaded <span id=numUploads>0</span> files 
+							</i>
+						</span>
+						<button id="secondDoubleNext" class="class_one" style="height:5%;float:right;margin-right:10%;">Next</button>
+					</div>
+					<!-- Wait screen for Vendor upload -->
+					<span id="waitV" class=center style="display:none;padding:15px">
+						Please Wait. Do not refresh the page.
+						<img style="width:15px;height:15px;" src="loading.gif"/>
+					</span>
+					<button id="secondNext" style="display:none;"></button><!--***-->
+				</div>
+			</div>
+			<!-- Mapping Box -->
+			<div id="box3" class="box">
+				<div style="height:100%">
+					<div id="mappingDiv" class="center" style="font-size:80%">
+						Now please assign the columns in your csv to the expected columns
+						<table id="csvDisplay" class="scrollable" style="border:1px solid black"></table>
+						<form  class=center id='mappingForm' action="" enctype="multipart/form-data">
+							<input style="display:none" type="hidden" id="table" name="table" value=""/>
+							<input style="display:none" type="hidden" id="insert" name="insert" value=""/>
+							<input style="display:none" type="hidden" id="used" name="used" value=""/>
+							<input style="display:none" type="hidden" id="columns" name="columns" value=""/>
+							<table id=t01>
+								<tr>
+									<td>code:<br><input class=info type=number name="code" id="code" min="0"/></td>
+									<td>inter_rate:<br><input class=info type=number name="inter_rate" id="inter_rate" min="0"/></td>
+									<td>intra_rate:<br><input class=info type=number name="intra_rate" id="intra_rate" min="0"/></td>
+									<td>indeterminate_rate:<br><input class=info type=number name="indeterminate_rate" id="indeterminate_rate" min="0"/>
+								</tr>
+								<tr>
+									<td>interval_time:<br><input class=info type=number name="interval_time" id="interval_time" min="0"/></td>
+									<td>seconds:<br><input class=info type=number name="seconds" id="seconds" min="0"/></td>
+									<td>country:<br><input class=info type=number name="country" id="country" min="0"/></td>
+									<td>min_time:<br><input class=info type=number name="min_time" id="min_time" min="0"/></td>
+								</tr>
+							</table>
+							<br><br><br>
+							<button  style="font-size:80%" type="button" name="submit2" id="submit2">Submit</button>
+						</form>
+					</div>
+					<!-- Mapping Waiting Screen -->
+					<span id="waitM" class="center class_five">
+						Please Wait. Do not refresh the page.
+						<img style="width:15px;height:15px;" src="loading.gif"/>
+					</span>
+				</div>
+				<div class="class_four"> <!--***-->			
+					<button id="thirdBack" style="margin:auto;width:20%;height:65%;font-size:100%;">Back</button>
+				</div>
+			</div>
+			<!-- Rules Submission Form -->
+			<div id="box4" class="box">
+				<div style="height:100%">
+					<div id="rulesDiv">
+						<form class=center style="padding-top:1%;" action="" enctype="multipart/form-data" name="rulesForm" id="rulesForm">
+							<input type="hidden" id="uploads" name="uploads" value=""/>
+							<input type="hidden" id="customers" name="customers" value=""/>
+							<div id="rulesInput">
+								<div class=right id="costRuleDiv">
+									<br>(Optional) Choose a Cost Rule: <input name="costRule" type="text" id="costRule" />
+								</div>
+								<div class=right id="pricingRulesDiv">
+									<br>(Optional) Choose a Pricing Rules csv file: <input name="pricingRules" type="file" id="pricingRules" />
+								</div>
+								<div class=right id="blackListDiv">
+									<br>(Optional) Choose a BlackList csv file: <input name="blackList" type="file" id="blackList" />
+								</div>
+								<div class=right id="dropDeltaDiv">
+									<br>(Optional) Choose a DropDelta: <input class="info" name="dropDelta" type="number" id="dropDelta" />
+								</div>
+								<div class=right id="internalSheetDiv">
+									<br>(Optional) Return internal sheet? <input name="internalSheet" type="checkbox" id="internalSheet" /><br><br>
+								</div>
+								<div>
+									<span style="float:left;margin-left:10%;">Rate Set Name:<input type=text name="code_name" id="code_name"/></span>
+									<span style="float:right;margin-right:10%;">Effective Date:<input type=text name="effective_date" id="effective_date" value=""/></span>
+								</div><br><br>
+								<button id="fourthBack" type="button" class="class_one class_six" style="margin-right:20%;">Back</button>
+								<button class="class_six"style="width:30%;" type="button" name="submit3" id="submit3">Create Tables</button> 
+							</div>
+							<!-- Generate Waiting Screen -->
+							<span id="wait-generate" class="center class_five" style="font-size: 200%;">Please Wait. Do not refresh the page.<img style="width:35px;height:35px;" src="loading.gif"/></span>
+						</form>
+					</div>
+				</div>
+				<div class="class_four"> <!--***-->	
+					<button id="fourthNext" class="class_one class_six">Next</button>
+					<button id="fourthStart" class="class_one class_six">start</button>
+				</div>
+			</div>
+			<div id="box5" class="box">
+				<div style="height:100%;">
+					<div style="margin-top:20%">
+						<h1>Success!</h1>
+						<button id="fifthNext" class="class_one" style="height:15%;">Create another Rate Table</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			var vendorForm = document.getElementById('vendorForm');
+			var xhr = new XMLHttpRequest();
+			var button = document.getElementById("submit1");
+			button.addEventListener('click',function(e){
+				e.preventDefault();
+				if(document.getElementById("vendorName").value == "") {//data validation
+					document.getElementById("vendorName").style.backgroundColor = "lightpink";
+					alert("You must provide a vendor name");
+				} else {
+					document.getElementById("vendorName").style.backgroundColor = "white";
+					document.getElementById("waitV").style.display = "block"; //waiting graphic
+					document.getElementById("vendorDiv").style.display = "none";
+					document.getElementById("secondDoubleNext").style.display = "none";
+					document.getElementById("counter").style.display = "none";
+					var fd = new FormData(vendorForm);
+					xhr.timeout = 0;
+					xhr.open('post', 'vendorSubmission.php'); //open connection
+					
+					xhr.send(fd);
+					xhr.onreadystatechange = function() {
+						if(xhr.status == 500) { //server error
+							alert("Something has gone wrong. Please contact NAME OF COMPANY for support. Code: 101");
+						}
+						if(xhr.readyState != 4) {
+							return;
+						}
+						if(xhr.status != 200) {
+							return;
+						} 
+						document.getElementById("waitV").style.display = "none";
+						document.getElementById("vendorDiv").style.display = "block";
+						document.getElementById("secondDoubleNext").style.display = "block";
+						document.getElementById("counter").style.display = "block";
+						var resp = xhr.responseText;//process server message
+						var err;
+						if(resp == "") {
+							throw new Error("Something has gone wrong. Please check to make sure your data and inputs are all correct. If this message persists please contact NAME OF COMPANY for support.");
+						} else {
+							err = resp.substring(0,5);
+							if (err == "ERROR") {
+								errorHandler(resp);
+							} else {
+								if(err == "WARNI") {
+									var codes = "";
+									while(resp.indexOf("WARNING") != -1) {
+										resp = resp.substring(resp.indexOf("(") + 1);
+										codes += resp.substring(0, resp.indexOf(")"));
+										resp = resp.substring(resp.indexOf(")") + 2);
+									}
+									alert("The process produced warnings. Codes: " + codes.substring(1));
+								}
+								var cnt = document.getElementById("numUploads");
+								var num = cnt.innerHTML;
+								num++; //number of files uploaded increased
+								cnt.innerHTML = num;
+								var respArr = resp.split("|");
+								document.getElementById("table").value = respArr[0]; //keeps track of table for mapping form
+								buildTable(respArr);
+								document.getElementById('secondNext').click();
+								setTimeout(function(){ alert("File uploaded Successfully!"); }, 500); 
+								//timeout is used to prevent animation interruption
+							}
+						}
+					}
+				}
+			},false);
+		</script>
+		<script>
+			var mappingForm = document.getElementById('mappingForm');
+			var xhr = new XMLHttpRequest();
+			var button = document.getElementById("submit2");
+			button.addEventListener('click',function(e){
+				e.preventDefault();
+				var wait = document.getElementById("waitM").style.display = "block"; //waiting graphic
+				document.getElementById("mappingDiv").style.display = "none";
+				mapColumns();
+				var fd = new FormData(mappingForm);
+				xhr.timeout = 0;
+				xhr.open('post', 'mapping.php'); //open connection
+				xhr.send(fd);
+				xhr.onreadystatechange = function() {
+					if(xhr.status == 500) { //server error
+						alert("Something has gone wrong. Please contact NAME OF COMPANY for support. Code: 101");
+					}
+					if(xhr.readyState != 4) {
+						return;
+					}
+					if(xhr.status != 200) {
+						return;
+					}
+					document.getElementById("waitM").style.display = "none";
+					document.getElementById("mappingDiv").style.display = "block";
+					var resp = xhr.responseText;
+					var err;
+					if(resp == "") {
+						alert("Something has gone wrong. Please check to make sure your data and inputs are all correct. If this message persists please contact NAME OF COMPANY for support.");
+					} else {
+						err = resp.substring(0,5);
+						if (err == "ERROR") {
+							errorHandler(resp);
+						} else {
+							if(err == "WARNI") {
+								var codes = "";
+								while(resp.indexOf("WARNING") != -1) {
+									resp = resp.substring(resp.indexOf("(") + 1);
+									codes += resp.substring(0, resp.indexOf(")"));
+									resp = resp.substring(resp.indexOf(")") + 2);
+								}
+								alert("The process produced warnings. Codes: " + codes.substring(1));
+							}
+							var uploads = document.getElementById("uploads");
+							var cur = uploads.getAttribute("value");
+							uploads.value = cur + "," + resp; //keeping track of uploaded file table names
+							if(document.getElementById("customer").checked) { //keeping track of customers
+								var customers = document.getElementById("customers");
+								var cur = customers.getAttribute("value");
+								customers.value = cur + "," + document.getElementById('vendorName').value;
+							}
+							document.getElementById('thirdBack').click();
+							setTimeout(function(){ alert("Mapping was Successful!"); }, 500);
+							//timeout is used to prevent animation interruption
+						}
+					}
+				}
+				
+			},false);
+		</script>
+		<script>
+			var rulesForm = document.getElementById('rulesForm');
+			var xhr = new XMLHttpRequest();
+			var button = document.getElementById("submit3");
+			button.addEventListener('click',function(e){
+				e.preventDefault(); //prevents refresh
+				/* data validation */
+				if(document.getElementById("code_name").value == "") {
+					document.getElementById("code_name").style.backgroundColor = "lightpink";
+					if(document.getElementById("effective_date").value == "") {
+						document.getElementById("effective_date").style.backgroundColor = "lightpink";
+					}
+					alert("Please provide a Rate Set Id for the tables");
+				} else if(document.getElementById("effective_date").value == "") {
+					document.getElementById("effective_date").style.backgroundColor = "lightpink";
+					document.getElementById("code_name").style.backgroundColor = "white";
+					alert("Please provide an effective date for the tables");
+				} else {
+					/* Hiding form and displaying wait screen as well as clearing data validation */
+					document.getElementById("code_name").style.backgroundColor = "white";
+					document.getElementById("effective_date").style.backgroundColor = "white";
+					document.getElementById("wait-generate").style.display = "block";
+					document.getElementById("rulesInput").style.display = "none";
+					var fd = new FormData(rulesForm);
+					xhr.timeout = 0;
+					xhr.open('post', 'generate.php');
+					xhr.send(fd); //submit form
+					xhr.onreadystatechange = function() {
+						if(xhr.status == 500) { //server error
+							alert("Something has gone wrong. Please contact NAME OF COMPANY for support. Code: 101");
+						}
+						if(xhr.readyState != 4) {
+							return;
+						}
+						if(xhr.status != 200) {
+							return;
+						}
+						document.getElementById("wait-generate").style.display = "none";
+						document.getElementById("rulesInput").style.display = "block";
+						var resp = xhr.responseText;
+						var err;
+						if(resp == "") {
+							alert("Something has gone wrong. Please check to make sure your data and inputs are all correct. If this message persists please contact NAME OF COMPANY for support. Code: 101");
+						} else {
+							err = resp.substring(0,5);
+							if (err == "ERROR") {
+								errorHandler(resp);
+							} else {
+								if(err == "WARNI") {
+									var codes = "";
+									while(resp.indexOf("WARNING") != -1) {
+										resp = resp.substring(resp.indexOf("(") + 1);
+										codes += resp.substring(0, resp.indexOf(")"));
+										resp = resp.substring(resp.indexOf(")") + 2);
+									}
+									alert("The process produced warnings. Codes: " + codes.substring(1));
+								}
+								/* Clearing data for a new set */
+								document.getElementById("uploads").value = "";
+								document.getElementById("table").value = "";
+								document.getElementById("insert").value = "";
+								document.getElementById("columns").value = "";
+								document.getElementById("numUploads").innerHTML = 0;
+								/*Move to Success box and download zip*/
+								document.getElementById("fourthNext").click();
+								download('rateTable.csv',resp);
+							}
+						}
+					}
+				}
+			},false);
+		</script>
+	</body>
+</html>
