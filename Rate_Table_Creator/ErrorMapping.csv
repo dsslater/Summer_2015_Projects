@@ -1,0 +1,53 @@
+Code,File,Problem,Type
+1,vendorSubmission.php,No file was provided,Resubmit
+2,vendorSubmission.php,Failed to connect to Database,Retry
+3,vendorSubmission.php,Failure to create MYSQL Table for the user's csv file,Retry
+4,vendorSubmission.php,Failure loading file into the table,Retry
+5,vendorSubmission.php,Failure adding name field to table,Retry
+6,vendorSubmission.php,Failure updating name field with name provided,Retry
+7,mapping.php,Failed to connect to Database,Retry
+8,mapping.php,Table-name to map from was not valid (possible injection attempt),Resubmit
+9,mapping.php,Failure creating a new table to map to,Retry
+10,mapping.php,Failure mapping from old to new table,Retry
+11,mapping.php,Failure dropping the new table due to ERROR 10. User data has been lost. The vendor has to be resubmitted,Resubmit
+12,mapping.php,Failure dropping the old table. Not a problem for the user.,Warning
+13,generate.php,dropDelta is a user supplied negative number,Resubmit
+14,generate.php,User supplied Blended Rate has no valid numbers,Resubmit
+15,generate.php,No Tables were uploaded,Resubmit
+16,g-functions.php,Failure creating table to combine vendors,Retry
+17,g-functions.php,Failure adding index to combined table,Retry
+18,g-functions.php,Failure merging a table to the combinde list,Retry
+19,g-functions.php,Failure dropping a table after it was merged,Warning
+20,g-functions.php,Failure removing rates that do no not operate on a 6 by 6 charging basis,Retry
+21,g-functions.php,Failure removing vendors,Resubmit
+22,g-functions.php,Failure creating internal table,Retry
+23,g-functions.php,Failure concatanating combinde table into internal table,Retry
+24,g-functions.php,Failue creating the calc table,Retry
+25,g-functions.php,Failure adding index to calc table,Retry
+26,g-functions.php,Failure writing internal tableout to a temp file,Retry
+27,g-functions.php,Failure preparing statement for calc table populating when a delta has been provided,Retry
+28,g-functions.php,Failure executing the prepared statement for insertion when a delta has been provided,Retry
+29,g-functions.php,Failure preparing statement for calc table populating,Retry
+30,g-functions.php,Failure executing the prepared statement for insertion,Retry
+31,g-functions.php,Failure creating cost table,Retry
+32,g-functions.php,Failure adding index to cost table,Retry
+33,g-functions.php,Failure migrating list of NPANXXs from the calc tbale to the cost table,Retry
+34,g-functions.php,Failure applying blending to calc table and inserting it into the cost table,Retry
+35,g-functions.php,Failure creating final table,Retry
+36,g-functions.php,Failure adding index to the final table,Retry
+37,g-functions.php,Failure migrating list of NPANXXs from the calc table to the final table,Retry
+38,g-functions.php,Failure copying costs to the final table when no price rules are provided,Retry
+39,g-functions.php,Failure preparing staement for setting the RSID and effective date of the final table,Retry
+40,g-functions.php,Failure executing the prepared statement for setting the RSID and effective date of the final table,Retry
+41,g-functions.php,Failure applying a pricing rule to the inter_rates of the cost table,Retry
+42,g-functions.php,Failure applying a pricing rule to the intra_rates of the cost table,Retry
+43,g-functions.php,Failure applying a pricing rule to the indeterminate_rates of the cost table,Retry
+44,g-functions.php,Failure writing out the clean Rate Set to a csv,Retry
+45,g-functions.php,Failure adding columns to the old calac table,Retry
+46,g-functions.php,Failure copying cost information from the cost table to the new internal table,Retry
+47,g-functions.php,Failure documenting inter rules in new internal table,Retry
+48,g-functions.php,Failure documenting intra rules in new internal table,Retry
+49,g-functions.php,Failure documenting indeterminate rules in new internal table,Retry
+50,g-functions.php,Failure copying prices from the final tbale to the internal table,Retry
+51,g-functions.php,Failure writing out the internal table,Retry
+52,g-functions.php,Failure dropping tables during clean-up,Warning
