@@ -1,0 +1,110 @@
+body {
+    padding: 0px;    
+}
+#container {
+    position: absolute;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;  
+}
+.center {
+	position: relative;
+	margin: auto;
+	padding-top: 5%;
+	display: block;
+	text-align: center;
+}
+.right {
+	padding-top:0;
+	margin-top:0;
+}
+.box {
+    position: absolute;
+    width: 85%;
+    height: 85%;
+    font-size: 220%;
+    text-align: center;
+    border: 1px solid black;
+	box-shadow: 10px 10px 5px #888888;
+    left: 150%;
+    top: 50px;
+    margin-left: -25%;
+	background-color: #9EC7C6;
+}
+.scrollable {
+	max-height:250px;
+	max-width: 70%;
+	background-color: white;
+	white-space: nowrap;
+	overflow: auto;
+	text-align: center;
+	display: block;
+	margin: auto;
+}
+
+/*Table used in mapping*/
+#t01 {
+	table-layout: fixed;
+	width:85%;
+	margin:auto;
+	font-size:70%;
+}
+
+/*mapping column numbers*/
+.info {
+	width: 30px;
+	display: table-cell;
+}
+
+/*First box needs to be moved to the left so its viewable*/
+#box1 {
+    left: 32%;
+}
+
+/*
+  Below are generalized classes that have been used to clean 
+  up the .html file. There is no specific attachment to a group 
+  of elements, but given the nature of the project many elements 
+  had the same css or overlapping css. To make things a bit more 
+  manageable I moved the redundant css here and made classes to 
+  reference the common combinations. Be careful editing these 
+  and consider replacing all references to these classes with 
+  hard coded css if you are trying to make a particular change 
+  as attempting to alter one element will likely break another 
+  somewhere else. Also remember that the css in the html will 
+  override what is here so that may be the easiest small fix.
+  I consider this a place for improvement.
+*/
+.class_one {
+	width: 20%;
+	font-size:100%;
+	margin:auto;
+}
+.class_two {
+	width: 60%;
+	font-size: 60%;
+	margin-bottom: 3%;
+}
+.class_three {
+	font-size: 65%;
+	margin-bottom: 3%;
+}
+.class_four {
+	height: 15%;
+	display: none;
+	bottom: 0;
+}
+.class_five {
+	display: none;
+	padding: 15px;
+}
+.class_six {
+	height: 65%;
+	font-size: 100%;
+	margin: auto;
+}
+.class_seven {
+	height: 100%;
+}
